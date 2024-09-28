@@ -1,4 +1,4 @@
-https://github.com/izabayo7/alu-AirBnB_clone_v2.git# Import necessary modules
+# Import necessary modules
 import cmd
 from shlex import split
 from models import storage
