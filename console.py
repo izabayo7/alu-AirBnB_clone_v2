@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-"""Defines the HBNB console."""
+https://github.com/izabayo7/alu-AirBnB_clone_v2.git# Import necessary modules
 import cmd
 from shlex import split
 from models import storage
@@ -140,7 +139,8 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
-        If no class is specified, displays all instantiated objects."""
+        If no class is specified, displays all instantiated objects.
+        """
         if not line:
             o = storage.all()
             print([o[k].__str__() for k in o])
@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """Updates an instanceby adding or updating attribute
+        """Updates an instance by adding or updating attribute
         Exceptions:
             SyntaxError: when there is no args given
             NameError: when there is no object taht has the name
@@ -202,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
 
     def count(self, line):
-        """count the number of instances of a class
+        """Count the number of instances of a class
         """
         counter = 0
         try:
@@ -219,11 +219,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def strip_clean(self, args):
-        """strips the argument and return a string of command
+        """Strips the argument and return a string of command
         Args:
             args: input list of args
         Return:
-            returns string of argumetns
+            returns string of arguments
         """
         new_list = []
         new_list.append(args[0])
@@ -242,7 +242,7 @@ class HBNBCommand(cmd.Cmd):
         return " ".join(i for i in new_list)
 
     def default(self, line):
-        """retrieve all instances of a class and
+        """Retrieve all instances of a class and
         retrieve the number of instances
         """
         my_list = line.split('.')
@@ -256,17 +256,11 @@ class HBNBCommand(cmd.Cmd):
             elif my_list[1][:7] == "destroy":
                 self.do_destroy(self.strip_clean(my_list))
             elif my_list[1][:6] == "update":
-                args = self.strip_clean(my_list)
-                if isinstance(args, list):
-                    obj = storage.all()
-                    key = args[0] + ' ' + args[1]
-                    for k, v in args[2].items():
-                        self.do_update(key + ' "{}" "{}"'.format(k, v))
-                else:
-                    self.do_update(args)
+                self.do_update(self.strip_clean(my_list))
         else:
             cmd.Cmd.default(self, line)
 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+    
